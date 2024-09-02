@@ -19,10 +19,4 @@ set_silent(assignment)
 optimize!(assignment)
 @assert is_solved_and_feasible(assignment)
 objective_value(assignment)
-20.0
 value.(y)
-4×4 Matrix{Float64}:
- -0.0  1.0  -0.0   0.0
-  0.0  0.0   1.0   0.0
-  1.0  0.0   0.0  -0.0
- -0.0  0.0   0.0   1.0
