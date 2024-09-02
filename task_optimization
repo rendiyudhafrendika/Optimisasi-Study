@@ -12,10 +12,17 @@ x = [
 n = size(x)[1]
 assignment = Model(HiGHS.Optimizer)
 set_silent(assignment)
-@variable(assignment, y[1:n, 1:n], Bin
+@variable(assignment, y[1:n, 1:n], Bin)
 @constraint(assignment, [i = 1:n], sum(y[:, i]) == 1)
 @constraint(assignment, [j = 1:n], sum(y[j, :]) == 1)
-@objective(assignment, Max, sum(G .* y))
+@objective(assignment, Max, sum(x .* y))
 optimize!(assignment)
 @assert is_solved_and_feasible(assignment)
 objective_value(assignment)
+20.0
+value.(y)
+4×4 Matrix{Float64}:
+ -0.0  1.0  -0.0   0.0
+  0.0  0.0   1.0   0.0
+  1.0  0.0   0.0  -0.0
+ -0.0  0.0   0.0   1.0
