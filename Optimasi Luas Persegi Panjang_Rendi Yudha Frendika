@@ -1,0 +1,12 @@
+using JuMP
+import Ipopt
+
+luas = Model(Ipopt.Optimizer)
+@variable(luas, p >=0)
+@variable(luas, l >=0)
+@constraint(luas, p + l == 5)
+@objective(luas, Max, p*l)
+optimize!(luas)
+value(p)
+value(l)
+objective_value(luas)
