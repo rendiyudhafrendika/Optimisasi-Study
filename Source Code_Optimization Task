@@ -12,7 +12,7 @@ x = [
 n = size(x)[1]
 max_flow = Model(HiGHS.Optimizer)
 @variable(max_flow, f[1:n, 1:n] >= 0)
-@constraint(max_flow, [i = 1:n, j = 1:n], f[i, j] <= G[i, j]) 
+@constraint(max_flow, [i = 1:n, j = 1:n], f[i, j] <= x[i, j]) 
 @constraint(max_flow, [i = 1:n; i != 1 && i != 6], sum(f[i, :]) == sum(f[:, i]))
 @objective(max_flow, Max, sum(f[1, :])) 
 optimize!(max_flow) 
